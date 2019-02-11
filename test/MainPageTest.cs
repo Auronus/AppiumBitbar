@@ -20,15 +20,19 @@ namespace AppiumDotNetSamples
         public void BeforeAll()
         {
             DesiredCapabilities capabilities = new DesiredCapabilities();
-            capabilities.SetCapability(MobileCapabilityType.BrowserName, "");
-            capabilities.SetCapability(MobileCapabilityType.PlatformName, App.AndroidDeviceName());
-            capabilities.SetCapability(MobileCapabilityType.PlatformVersion, App.AndroidPlatformVersion());
-            capabilities.SetCapability(MobileCapabilityType.AutomationName, "UIAutomator2");
-            capabilities.SetCapability(MobileCapabilityType.DeviceName, "Nokia");
-            capabilities.SetCapability(MobileCapabilityType.App, App.AndroidApp());
+            capabilities.SetCapability("device", "Android");
+            capabilities.SetCapability("deviceName", "Android");
+            capabilities.SetCapability("platformName", "Android");
+            capabilities.SetCapability("testdroid_apiKey", "11r25DpLM2g6Ek0hn751HGkJPbC1S71s");
+            capabilities.SetCapability("testdroid_target", "Android");
+            capabilities.SetCapability("testdroid_project", "Appium cource");
+            capabilities.SetCapability("testdroid_testrun", "Android Run 1");
+            capabilities.SetCapability("testdroid_device", "Google Pixel 9.0 -US");
+            capabilities.SetCapability("testdroid_app", "ae928e7d-5014-44f9-9405-3ba596e9f99b/Ali.apk");
 
             driver = new AndroidDriver<AndroidElement>(Env.ServerUri(), capabilities, Env.INIT_TIMEOUT_SEC);
             driver.Manage().Timeouts().ImplicitWait = Env.IMPLICIT_TIMEOUT_SEC;
+            driver.StartActivity("com.alibaba.aliexpresshd", "com.aliexpress.module.home.MainActivity");
             wait = new WebDriverWait(driver, Env.IMPLICIT_TIMEOUT_SEC);
         }
 
@@ -39,6 +43,7 @@ namespace AppiumDotNetSamples
         }
 
         [Test(Description = "Т-7. Открытие бокового меню свайпом")]
+        [TestCase(TestName = "Т-7. Открытие бокового меню свайпом")]
         public void OpedSideMenuWithSwipeTest()
         {
             int start_x; int end_x;

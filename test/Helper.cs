@@ -12,7 +12,7 @@ namespace AppiumDotNetSamples.Helper
             String sauceAccessKey = Environment.GetEnvironmentVariable("SAUCE_ACCESS_KEY");
 
             return (sauceUserName == null) || (sauceAccessKey == null)
-                ? new Uri("http://localhost:4723/wd/hub")
+                ? new Uri("http://appium.bitbar.com/wd/hub")
                 : new Uri($"https://{sauceUserName}:{sauceAccessKey}@ondemand.saucelabs.com:80/wd/hub");
         }
 
